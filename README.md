@@ -123,8 +123,3 @@ Functionalities:
 - Store in databases (allowing future use of data)
 - Advanced filtering and search (quickly locating significant elements)
 - Export and report generation (achieving a better interpretation)
-ctionalities:
-- Dynamic creation of data lists (filtering by specific attributes)
-- Store in databases (allowing future use of data)
-- Advanced filtering and search (quickly locating significant elements)
-- Export and report generation (achieving a better interpretation)

@@ -49,6 +49,8 @@ These are some recommendations to consider before practicing web scraping:
 
 ---
 ```mermaid
+    classDiagram
+    direction TB
     class URL {
       +string direction
       +url_status()

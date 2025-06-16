@@ -9,7 +9,7 @@ A web scraping project using Python by the Hacktouille team (Angel Santiago Fló
        ___________.""`-------`"".____________
       /  o                            O      \
       \                                      /                           
-      /  .    O      HACKTOUILLE         o   \
+      /  .    O     HACKTOUILLE          o   \
       \                                      /         __
       /                                      \     _.-'  `.
       \______________o__________o____________/ .-~^        `~--'

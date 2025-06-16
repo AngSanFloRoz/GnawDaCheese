@@ -8,8 +8,8 @@ A web scraping project using Python by the Hacktouille team (Angel Santiago Fló
                       >  -  <
        ___________.""`-------`"".____________
       /  o                            O      \
-      \                                      /
-      /  .    O                          o   \
+      \                                      /                           
+      /  .    O      HACKTOUILLE         o   \
       \                                      /         __
       /                                      \     _.-'  `.
       \______________o__________o____________/ .-~^        `~--'
@@ -29,11 +29,16 @@ Some of its purposes are:
 4. Data collection for AI training
 5. Social networks analysis and trend monitoring
 
+### Python extensions 
+-   Beautifulsoup (HTML and XML files) for statics webs
+-   Selenium (browser interaction simulation) for dinamic webs
+-   Scrapy (big projects) this allows to export data to differents formats (JSON, CSV, databases, etc)
+
 ### WARNINGS
 
 These are some recommendations to consider before practicing web scraping:
 1. Always verify the terms of service
-2. Avoid the collection of personal data without consent
+2. Avoid the collection of personal data without consent (according to Law 1581 of 2012)
 3. Do not overload servers
 4. Make sure that the use of data is ethical and legal
 
@@ -41,51 +46,46 @@ These are some recommendations to consider before practicing web scraping:
 
 ## Class diagram
 
+
 ---
 ```mermaid
-classDiagram
-direction TB
-    class Url {
+    class URL {
       +string direction
       +url_status()
     }
-    class Petition {
-      +string filter
-      +access()
-    }
-    class Search{
-      +webs: list
+    class Database {
+      +list websites
       +add_web()
     }    
     class Website {
-	    +"Url"
-	    +string name
-	    +string creation_date
-	    +list_titles()
-	    +list_hyperlinks()
+   +"Url"
+   +string name
+   +string creation_date
+   +list_titles()
+   +list_hyperlinks()
     }
 
-    Url --o Website: "has a"
+    URL --o Website: "has a"
 
     class SocialNetwork {
-	    +string gender
-	    +string marital_status
-	    +string birthdate
-	    +average_daily_posts()
+   +string gender
+   +string marital_status
+   +string birthdate
+   +average_daily_posts()
     }
 
     class News {
-	    -string date
-	    -string author
-	    -string place_of_events
-	    -people_involved()
+   -string date
+   -string author
+   -string place_of_events
+   -people_involved()
     }
 
     class Wiki {
+   +string name
       +list related_articles
-	    +string name
-	    +int num_images
-	    +filter_by_topic()
+   +int num_images
+   +filter_by_topic()
     }
 
     class OnlineStore {
@@ -98,11 +98,11 @@ direction TB
     }
 
     class WebScraping{
-      +"Petition"
-      +list websites
-      +export_info()   
+      +"Website"
+      +"Database"
+      +export_info()  
     }
-    
+   
     Website <|-- OnlineStore: "is a"
     Website <|-- SocialNetwork: "is a"
     Website <|-- News: "is a"
@@ -111,8 +111,7 @@ direction TB
     SocialNetwork --o WebScraping: "has a"
     News --o WebScraping: "has a"
     Wiki --o WebScraping: "has a"
-    Petition --o WebScraping: "has a"
-    Search --o WebScraping: "has a"  
+    Database --o WebScraping: "has a"
 ```
 ## Preleminary solution
 Our project will allow to collect, process and organize large amounts of data from multiple websites quickly and efficiently.

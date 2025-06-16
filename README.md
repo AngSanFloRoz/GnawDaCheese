@@ -1,11 +1,24 @@
 # GnawDaCheese
-A web scraping project using Python by the Hacktouille team
+A web scraping project using Python by the Hacktouille team (Angel Santiago Flórez Rozo and Joan Sebastián Rivera Barajas)
 
----
+                  .--,       .--,
+                 ( (  \.---./  ) )
+                  '.__/o   o\__.'
+                     {=  ^  =}
+                      >  -  <
+       ___________.""`-------`"".____________
+      /  o                            O      \
+      \                                      /
+      /  .    O                          o   \
+      \                                      /         __
+      /                                      \     _.-'  `.
+      \______________o__________o____________/ .-~^        `~--'
+                    ___)( )(___        `-.___.'
+                   (((__) (__)))
 
 ## What is web scrapping?
 
-Web scraping is an automation technique used to collect specific data from web pages, using mechanisms and scripts that analyze the source code of the page in question to filter large amounts of information and obtain the required data.
+Web scraping is a method of automation used to pull particular data from internet sites. It consists of using scripts and automated programs that browse web pages, examine their HTML layout, and gather only the desired information. This approach enables developers or analysts to sort through and gather important data from large quantities of unstructured or partially organized information found online. Rather than manually copying and pasting data, web scraping allows for the automated collection of data on a greater scale, which saves time and enhances precision.
 
 ### Which are its purposes?
 
@@ -30,7 +43,7 @@ These are some recommendations to consider before practicing web scraping:
 
 ---
 ```mermaid
-  classDiagram
+classDiagram
 direction TB
     class Url {
       +string direction
@@ -99,7 +112,18 @@ direction TB
     News --o WebScraping: "has a"
     Wiki --o WebScraping: "has a"
     Petition --o WebScraping: "has a"
-    Search --o WebScraping: "has a"
+    Search --o WebScraping: "has a"  
 ```
-## preleminary solution
-With Web scraping we purpose is find information quickly using OOP to achieve it
+## Preleminary solution
+Our project will allow to collect, process and organize large amounts of data from multiple websites quickly and efficiently.
+
+Functionalities:
+- Dynamic creation of data lists (filtering by specific attributes)
+- Store in databases (allowing future use of data)
+- Advanced filtering and search (quickly locating significant elements)
+- Export and report generation (achieving a better interpretation)
+ctionalities:
+- Dynamic creation of data lists (filtering by specific attributes)
+- Store in databases (allowing future use of data)
+- Advanced filtering and search (quickly locating significant elements)
+- Export and report generation (achieving a better interpretation)

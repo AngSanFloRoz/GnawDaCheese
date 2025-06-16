@@ -102,4 +102,4 @@ direction TB
     Search --o WebScraping: "has a"
 ```
 ## preleminary solution
-
+With Web scraping we purpose is find information quickly using OOP to achieve it

@@ -1,3 +1,6 @@
+import requests
+from bs4 import BeautifulSoup
+
 class Cheese:
     def __init__(self, url: str, name: str, creation_date: str):
         self.__url = url

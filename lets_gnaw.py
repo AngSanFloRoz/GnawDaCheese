@@ -1,5 +1,7 @@
+#* website
+
 class Cheese:
-    def __init__(self, url: str, name: str, creation_date: str):
+    def __init__(self, url: str, name: str):
         self.__url = url
         self.__name = name
         self.__creation_date = creation_date
@@ -22,5 +24,46 @@ class Cheese:
     def set_creation_date(self, creation_date: str):
         self.__creation_date = creation_date
 
+    def spoiled(self)
+        return self.__url.state() != good
+
+    def extratinformation(self):
+        raise NotImplementError
+
     def __str__(self):
         return f"Cheese: Name = {self.__name}, URL = {self.__url}, Creation Date = {self.__creation_date})"
+
+
+
+#cheese's children
+
+#static
+
+class wiki(Cheese):
+    def __init__def __init__(self, url: str, name: str)
+        super().__init__(url, name)
+
+    def contents(self):
+        pass #todo ver como extraer subtitulos (con beatiful soups)
+
+    def extractinformation(self):
+        pass # contents extract the information
+
+    def export_information(self):
+        pass #contest extrac information
+
+class OnlineStore(Cheese):
+    def __init__def __init__(self, name: str, url: str)
+        super().__init__(url, name)
+
+    def contents(self):
+        pass #despues ver (con beatiful soups)
+
+    def extractinformation(self):
+        pass # despues ver
+
+    def export_information(self):
+        pass #despues ver
+    
+
+

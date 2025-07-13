@@ -51,39 +51,16 @@ These are some recommendations to consider before practicing web scraping:
 ```mermaid
     classDiagram
     direction TB
-    class URL {
-      +string direction
-      +url_status()
-    }
-    class Database {
-      +list websites
-      +add_web()
-    }    
-    class Website {
+        class Cheese-Website-{
    +"Url"
    +string name
    +string creation_date
    +list_titles()
    +list_hyperlinks()
+   +change_url(newurl)
     }
 
-    URL --o Website: "has a"
-
-    class SocialNetwork {
-   +string gender
-   +string marital_status
-   +string birthdate
-   +average_daily_posts()
-    }
-
-    class News {
-   -string date
-   -string author
-   -string place_of_events
-   -people_involved()
-    }
-
-    class Wiki {
+   class Wiki {
    +string name
       +list related_articles
    +int num_images
@@ -104,16 +81,18 @@ These are some recommendations to consider before practicing web scraping:
       +"Database"
       +export_info()  
     }
+
+    class document{
+      -list Information
+      +importpdf()
+    }
+
    
-    Website <|-- OnlineStore: "is a"
-    Website <|-- SocialNetwork: "is a"
-    Website <|-- News: "is a"
-    Website <|-- Wiki: "is a"
+    Cheese-Website- <|-- OnlineStore: "is a"
+    Cheese-Website- <|-- Wiki: "is a"
     OnlineStore --o WebScraping: "has a"
-    SocialNetwork --o WebScraping: "has a"
-    News --o WebScraping: "has a"
     Wiki --o WebScraping: "has a"
-    Database --o WebScraping: "has a"
+    document --o WebScraping: "has a"
 ```
 ## Preleminary solution
 Our project will allow to collect, process and organize large amounts of data from multiple websites quickly and efficiently.

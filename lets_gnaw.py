@@ -20,10 +20,16 @@ class Cheese:
         self.__name = name
 
     def get_creation_date(self):
-        return self.__creation_date 
+        return self.__creation_date
 
     def set_creation_date(self, creation_date: str):
         self.__creation_date = creation_date
 
     def __str__(self):
         return f"Cheese: Name = {self.__name}, URL = {self.__url}, Creation Date = {self.__creation_date})"
+
+    def gnaw(self):
+        response = requests.get(self.__url)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            

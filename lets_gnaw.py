@@ -1,4 +1,32 @@
 #* website
+from bs4 import BeautifulSoup
+import requests
+
+
+class Cheeses:
+    def __init__(self, Url):
+        self.Url = Url 
+        self.request = requests.get(Url)
+        self.state = self.request.status_code
+        self.html = self.request.text
+        if self.state == 200:
+            self.soup = BeautifulSoup(self.html, 'html.parser')
+        else: 
+            self.soup = None
+
+    def information(self):
+        if self.soup:
+            for tag in self.soup.find_all(["h1", "h2", "p"]):
+                print(tag.text)
+        else:
+            print("No se puede pa, pagina de mrd")
+        return "dime si quieres algo mas"
+
+url = "https://es.wikipedia.org/wiki/Adolf_Hitler"
+cheese1 = Cheese(url)
+cheese1.information()   
+
+#! la de abajo es la de antes y la arriba es la nueva
 
 class Cheese:
     def __init__(self, url: str, name: str):

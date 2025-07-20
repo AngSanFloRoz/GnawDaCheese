@@ -208,7 +208,9 @@ class Wikipedia(Cheese):
                     try:
                         for i, table in enumerate(tables):
                             if len(table) > 1:
-                                df = pandas.DataFrame(table[1:], columns = table[0])
+                                df = pandas.DataFrame(
+                                    table[1:], columns = table[0]
+                                )
                             else:
                                 df = pandas.DataFrame(table)
                             df.to_excel(
@@ -216,39 +218,55 @@ class Wikipedia(Cheese):
                                 )
             
                     except Exception as e:
-                        print(f"An error occurred while saving tables to Excel: {e}")
+                        print(
+                            f"An error occurred while saving tables to Excel: {e}"
+                        )
 
                     try:
                         if titles:
-                            df_titles = pandas.DataFrame({"Títulos": titles})
+                            df_titles = pandas.DataFrame(
+                                {"Títulos": titles}
+                            )
                             df_titles.to_excel(
                                 writer, sheet_name = "Títulos", index = False
                             )
 
                     except Exception as e:
-                        print(f"An error occurred while saving titles to Excel: {e}")
+                        print(
+                            f"An error occurred while saving titles to Excel: {e}"
+                             )
 
                     try:
                         if hyperlinks:
-                            df_links = pandas.DataFrame({"Hipervínculos": hyperlinks})
+                            df_links = pandas.DataFrame(
+                                {"Hipervínculos": hyperlinks}
+                            )
                             df_links.to_excel(
                                 writer, sheet_name = "Links", index = False
                             )
 
                     except Exception as e:
-                        print(f"An error occurred while saving hyperlinks to Excel: {e}")
+                        print(
+                            f"An error occurred while saving hyperlinks to Excel: {e}"
+                        )
 
                     try:
                         if paragraphs:
-                            df_paragraphs = pandas.DataFrame({"Párrafos": paragraphs})
+                            df_paragraphs = pandas.DataFrame(
+                                {"Párrafos": paragraphs}
+                                                            )
                             df_paragraphs.to_excel(
                                 writer, sheet_name = "Párrafos", index = False
                             )
 
                     except Exception as e:
-                        print(f"An error occurred while saving paragraphs to Excel: {e}")
+                        print(
+                            f"An error occurred while saving paragraphs to Excel: {e}"
+                             )
                 
-                print(f"Excel file saved successfully as '{xlsx_filename}'.")
+                print(
+                    f"Excel file saved successfully as '{xlsx_filename}'."
+                     )
 
         except FileNotFoundError:
             print(f"JSON file '{self.json_filename}' not found.")

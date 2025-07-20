@@ -6,16 +6,33 @@ from bs4 import BeautifulSoup
 from Project.cheese import Cheese
 
 class Wikipedia(Cheese):
+    """
+    Esta subclase hereda de Cheese y represente una página del sitio web
+    Wikipedia. Tiene los atributos de Cheese, además de atributos propios:
+    Títulos, tablas, hipervínculos y párrafos.
+    """
+    
     def __init__(self, url: str, name: str, creation_date: str):
+        """
+        Inicializa una instancia de Wikipedia.
+        """
         super().__init__(url, name, creation_date)
         self.__url = url
         self.__name = name
         self.__creation_date = creation_date
 
     def status_code_verification(self):
+        """
+        Verifica que el código de estado tenga un valor de 200 (solicitud del
+        cliente recibida, entendida y procesada con éxito).
+        """
         return super().status_code_verification()
 
     def gnaw_titles(self):
+        """
+        Obtiene todos los títulos de la página, los almacena como un atributo
+        de tipo list del objeto y los imprime en la consola.
+        """
         self.titles = []
         if self.status_code_verification():
             soup = BeautifulSoup(
@@ -35,6 +52,11 @@ class Wikipedia(Cheese):
             )
 
     def gnaw_tables(self):
+        """
+        Obtiene todas las tablas de la página, con sus respectivas filas y
+        celdas, y las almacena como un atributo de tipo list del objeto.
+        Por último, imprime en la consola las tablas.
+        """
         self.tables = []
         if self.status_code_verification():
             soup = BeautifulSoup(requests.get(self.__url).text, 'html.parser')
@@ -59,7 +81,7 @@ class Wikipedia(Cheese):
                     print(f"Row {j + 1}:")
                     for box in all_boxes[i][j]:
                         print(box.get_text(strip = True))
-            return list(tables), all_rows, all_boxes
+            return self.tables, all_rows, all_boxes
         else:
             print(
                 f"Failed to retrieve the page."
@@ -68,6 +90,10 @@ class Wikipedia(Cheese):
             return None
 
     def gnaw_hyperlinks(self):
+        """
+        Obtiene todos los hipervínculos de la página, los almacena como un atributo
+        de tipo list del objeto y los imprime en la consola.
+        """
         self.hyperlinks = []
         if self.status_code_verification():
             soup = BeautifulSoup(requests.get(self.__url).text, 'html.parser')
@@ -87,6 +113,10 @@ class Wikipedia(Cheese):
             )
 
     def gnaw_text(self):
+        """
+        Obtiene todos los párrafos de la página, los almacena como un atributo
+        de tipo list del objeto y los imprime en la consola.
+        """
         self.paragraphs = []
         if self.status_code_verification():
             soup = BeautifulSoup(requests.get(self.__url).text, 'html.parser')
@@ -105,7 +135,16 @@ class Wikipedia(Cheese):
             )
 
     def save_to_json(self, filename: str):
+        """
+        Crea un diccionario (data), en el que guarda todos los atributos del
+        objeto (obtenidos por medio de los anteriores métodos) de la siguiente
+        manera: clave = <nombre del atributo>, valor = <contenido del atributo>.
+        Posteriormente, crea un archivo JSON con el nombre específicado en el
+        que guarda data de manera que sea legible (indentación de 4 espacios).
+        """
         print(f"Remi is saving data to {filename}...")
+        self.json_filename = filename
+        
         data = {
             "url": self.__url,
             "name": self.__name,
@@ -114,8 +153,7 @@ class Wikipedia(Cheese):
         if self.status_code_verification():
 
             self.gnaw_titles()
-            data["titles"] = getattr(self, "titles", [])
-            soup = BeautifulSoup(requests.get(self.__url).text, 'html.parser')
+            data["titles"] = [title for title in self.titles]
 
             tables_data = []
             tables_result = self.gnaw_tables()
@@ -143,15 +181,16 @@ class Wikipedia(Cheese):
             print("Failed to retrieve the page. Data not saved.")
 
 
-    def save_to_xlsx(self, xlsx_filename: str, json_filename: str = None):
-
+    def save_to_xlsx(self, xlsx_filename: str):
+        """
+        Accede al contenido del archivo JSON creado y convierte tablas,
+        títulos, hipervínculos y párrafos  a un archivo XLSX donde se
+        separan en distintas hojas.
+        """
         print(f"Remi is saving data to {xlsx_filename}...")
 
-        if json_filename is None:
-            json_filename = f"{self.__name.replace(' ', '_').lower()}_data.json"
-
         try:
-            with open(json_filename, 'r', encoding='utf-8') as file:
+            with open(self.json_filename, 'r', encoding='utf-8') as file:
                 data = json.load(file)
 
                 tables = data.get("tables", [])
@@ -212,5 +251,5 @@ class Wikipedia(Cheese):
                 print(f"Excel file saved successfully as '{xlsx_filename}'.")
 
         except FileNotFoundError:
-            print(f"JSON file '{json_filename}' not found.")
+            print(f"JSON file '{self.json_filename}' not found.")
         

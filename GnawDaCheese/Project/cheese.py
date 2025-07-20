@@ -3,7 +3,8 @@ import requests
 
 class Cheese:
     """
-    Esta es la página a roer (scrapear).
+    Esta clase representa la página a roer (scrapear). Tiene como atributos
+    una URL, una fecha de creación y un nombre
     """
     
     def __init__(self, url: str, creation_date: str):

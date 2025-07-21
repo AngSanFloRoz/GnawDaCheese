@@ -130,7 +130,7 @@ Constructor: Initializes the Wikipedia object with a URL, name, and creation dat
 status_code_verification: Ensures the webpage loads correctly (status 200).
 
 Scraping Methods:
-gnaw_titles(): Extracts all <h2> titles from the page.
+gnaw_titles(): Extracts all "<h2>" titles from the page.
 gnaw_tables(): Extracts all tables with class "wikitable", and prints their rows and cells.
 gnaw_hyperlinks(): Extracts all hyperlinks from the page.
 gnaw_text(): Extracts all text from paragraph tags <p>.

@@ -112,6 +112,41 @@ Libraries:
 
 ## The Code
 
+This ia a modular web scraping system that extracts structured information from two types of sources: Wikipedia (static pages) and Mercado Libre (dynamic content).
+
+### 1. Project Structure
+
+#### Cheese (Base Class):
+Represents a generic web page with basic attributes (URL, name, creation date).
+It includes methods to verify the page's status (status_code_verification).
+
+#### Wikipedia (Cheese Subclass):
+- Objective: Extract titles, tables, paragraphs, and hyperlinks from Wikipedia pages.
+##### Key Features:
+- gnaw_* methods to extract specific elements (e.g., gnaw_tables).
+- Export to JSON and Excel (with organized formatting).
+
+#### E-commerce (Queso Subclass):
+Objective: Scrape products from Mercado Libre (prices, reviews, discounts).
+##### Key Features:
+- Uses Selenium to interact with dynamic pages (searches, clicks).
+- Save data in JSON and Excel (with custom styles: bold, alignment).
+
+### 2. Workflow
+
+#### Extraction:
+- Wikipedia: Direct parsing with BeautifulSoup.
+- Mercado Libre: Automation with Selenium (code-driven browser).
+#### Processing:
+Data is converted into Python structures (lists/dictionaries).
+#### Export:
+- JSON: For interoperability and further analysis.
+- Excel: For user-friendly visualization (separate sheets, formats).
+
+### 3. Key Features
+- Modularity: Each class handles a source type (Wikipedia/Mercado Libre).
+- Persistence: Data saved in specific folders (jsonfilesstatic, excelfilesdynamic).
+- Robustness: Basic error handling (e.g., missing data in product reviews).
 
 ### Subclasses: Wikipedia & Onlinecommerce
 

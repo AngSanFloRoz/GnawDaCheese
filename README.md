@@ -126,7 +126,7 @@ Libraries used:
 - requests and BeautifulSoup for web scraping.
 
 Class Wikipedia (inherits from Cheese):
-- Constructor: Initializes the Wikipedia object with a URL, name, and creation date.
+- Constructor: Initializes the Wikipedia object with an URL, a name, and a creation date.
 - status_code_verification: Ensures the webpage loads correctly (status 200).
 
 Scraping Methods:

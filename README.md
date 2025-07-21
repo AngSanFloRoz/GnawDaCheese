@@ -102,3 +102,11 @@ Functionalities:
 - Store in databases (allowing future use of data)
 - Advanced filtering and search (quickly locating significant elements)
 - Export and report generation (achieving a better interpretation)
+
+## Requirements
+Libraries:
+- json (save and load structured data)
+- pandas (create Excel sheets from data)
+- requests (download the HTML of the web page)
+- BeautifulSoup from bs4 (parse HTML and extract titles, tables, links, and text)
+- openpyxl (engine needed for pandas to generate .xlsx files)

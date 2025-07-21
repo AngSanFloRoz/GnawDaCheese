@@ -270,4 +270,3 @@ class Wikipedia(Cheese):
 
         except FileNotFoundError:
             print(f"JSON file '{self.json_filename}' not found.")
-        

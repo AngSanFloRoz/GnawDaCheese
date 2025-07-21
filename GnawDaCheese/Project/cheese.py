@@ -3,13 +3,13 @@ import requests
 
 class Cheese:
     """
-    Esta clase representa la página a roer (scrapear). Tiene como atributos
-    una URL, una fecha de creación y un nombre
+    This class represents the page to be scraped. Its attributes are a URL, a
+    creation date and a name.
     """
     
     def __init__(self, url: str, creation_date: str):
         """
-        Inicializa una instancia de Cheese.
+        Initializes an instance of Cheese.
         """
         self.__url = url
         self.__creation_date = creation_date
@@ -18,44 +18,44 @@ class Cheese:
 
     def get_url(self):
         """
-        Obtener la URL.
+        Gets the URL.
         """
         return self.__url
         
     def set_url(self, url: str):
         """
-        Establecer la URL.
+        Sets the URL.
         """
         self.__url = url
         
     def get_name(self):
         """
-        Obtener el nombre de la página.
+        Gets the name of the page.
         """
         return self.__name
         
     def set_name(self, name: str):
         """
-        Establecer el nombre de la página.
+        Sets the name of the page.
         """
         self.__name = name
 
     def get_creation_date(self):
         """
-        Obtener la fecha de creación.
+        Gets the creation date.
         """
         return self.__creation_date
         
     def set_creation_date(self, creation_date: str):
         """
-        Establecer la fecha de creación.
+        Sets the creation date.
         """
         self.__creation_date = creation_date
 
     def __str__(self):
         """
-        Define cómo se comporta un objeto Cheese (página) al utilizar
-        print(<objeto>) para imprimir en la consola.
+        Defines how a Cheese object (web page) behaves when using
+        print(<object>) to print to the console.
         """
         return (
             f"Cheese: Name = {self.__name}, "
@@ -65,8 +65,8 @@ class Cheese:
     
     def status_code_verification(self):
         """
-        Verifica que el código de estado tenga un valor de 200 (solicitud del
-        cliente recibida, entendida y procesada con éxito).
+        Verify that the status code has a value of 200 (client request received,
+        understood, and processed successfully).
         """
         response = requests.get(self.__url)
         if response.status_code == 200:

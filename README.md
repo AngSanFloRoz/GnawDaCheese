@@ -106,7 +106,6 @@ Functionalities:
 ## Requirements
 Libraries:
 - json (save and load structured data)
-- pandas (create Excel sheets from data)
 - requests (download the HTML of the web page)
 - BeautifulSoup from bs4 (parse HTML and extract titles, tables, links, and text)
 - openpyxl (engine needed for pandas to generate .xlsx files)
@@ -122,7 +121,7 @@ This script defines a Wikipedia class that inherits from Cheese. It is designed 
 ##### Main Components:
 Libraries used:
 - json for saving structured data.
-- pandas and openpyxl for exporting to Excel.
+- openpyxl for exporting to Excel.
 - requests and BeautifulSoup for web scraping.
 
 Class Wikipedia (inherits from Cheese):

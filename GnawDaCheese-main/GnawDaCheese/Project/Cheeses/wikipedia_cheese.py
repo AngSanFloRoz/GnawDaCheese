@@ -1,4 +1,5 @@
 import json
+import os
 import pandas
 import requests
 
@@ -144,6 +145,13 @@ class Wikipedia(Cheese):
         """
         print(f"Remi is saving data to {filename}...")
         self.json_filename = filename
+
+        base_dir = os.path.dirname(__file__)
+
+        json_dir = os.path.join(base_dir, "..", "jsonfilesstatic")
+        os.makedirs(json_dir, exist_ok = True)
+
+        json_path = os.path.join(json_dir, f"{filename}.json")
         
         data = {
             "url": self.__url,
@@ -175,7 +183,7 @@ class Wikipedia(Cheese):
             self.gnaw_text()
             data["paragraphs"] = [paragraph for paragraph in self.paragraphs]
 
-            with open(filename, 'w', encoding = 'utf-8') as file:
+            with open(json_path, 'w', encoding = 'utf-8') as file:
                 json.dump(data, file, ensure_ascii = False, indent = 4)
         else:   
             print("Failed to retrieve the page. Data not saved.")
@@ -189,8 +197,12 @@ class Wikipedia(Cheese):
         """
         print(f"Remi is saving data to {xlsx_filename}...")
 
+        base_dir = os.path.dirname(__file__)
+        
+        json_path = os.path.join(base_dir, "..", "jsonfilestatic", f"{self.json_name}.json")
+        
         try:
-            with open(self.json_filename, 'r', encoding='utf-8') as file:
+            with open(json_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
 
                 tables = data.get("tables", [])

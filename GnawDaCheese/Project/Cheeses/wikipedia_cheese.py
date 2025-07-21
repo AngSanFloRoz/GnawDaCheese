@@ -7,14 +7,14 @@ from Project.cheese import Cheese
 
 class Wikipedia(Cheese):
     """
-    Esta subclase hereda de Cheese y represente una página del sitio web
-    Wikipedia. Tiene los atributos de Cheese, además de atributos propios:
-    Títulos, tablas, hipervínculos y párrafos.
+    This subclass inherits from Cheese and represents a page from the Wikipedia
+    website. It has the attributes of Cheese, as well as its own attributes:
+    Titles, tables, hyperlinks, and paragraphs.
     """
     
     def __init__(self, url: str, name: str, creation_date: str):
         """
-        Inicializa una instancia de Wikipedia.
+        Initializes a Wikipedia instance.
         """
         super().__init__(url, name, creation_date)
         self.__url = url
@@ -23,15 +23,15 @@ class Wikipedia(Cheese):
 
     def status_code_verification(self):
         """
-        Verifica que el código de estado tenga un valor de 200 (solicitud del
-        cliente recibida, entendida y procesada con éxito).
+        Verify that the status code has a value of 200 (client request received,
+        understood, and processed successfully).
         """
         return super().status_code_verification()
 
     def gnaw_titles(self):
         """
-        Obtiene todos los títulos de la página, los almacena como un atributo
-        de tipo list del objeto y los imprime en la consola.
+        Gets all the titles on the page, stores them as a list attribute of the
+        object, and prints them to the console.
         """
         self.titles = []
         if self.status_code_verification():
@@ -53,9 +53,9 @@ class Wikipedia(Cheese):
 
     def gnaw_tables(self):
         """
-        Obtiene todas las tablas de la página, con sus respectivas filas y
-        celdas, y las almacena como un atributo de tipo list del objeto.
-        Por último, imprime en la consola las tablas.
+        Obtains all the tables on the page, along with their respective rows and
+        cells, and stores them as a list attribute of the object. Finally, it
+        prints the tables to the console.
         """
         self.tables = []
         if self.status_code_verification():
@@ -91,8 +91,8 @@ class Wikipedia(Cheese):
 
     def gnaw_hyperlinks(self):
         """
-        Obtiene todos los hipervínculos de la página, los almacena como un atributo
-        de tipo list del objeto y los imprime en la consola.
+        Gets all hyperlinks on the page, stores them as a list attribute of the
+        object, and prints them to the console.
         """
         self.hyperlinks = []
         if self.status_code_verification():
@@ -114,8 +114,8 @@ class Wikipedia(Cheese):
 
     def gnaw_text(self):
         """
-        Obtiene todos los párrafos de la página, los almacena como un atributo
-        de tipo list del objeto y los imprime en la consola.
+        Gets all the paragraphs on the page, stores them as a list attribute of
+        the object, and prints them to the console.
         """
         self.paragraphs = []
         if self.status_code_verification():
@@ -136,11 +136,11 @@ class Wikipedia(Cheese):
 
     def save_to_json(self, filename: str):
         """
-        Crea un diccionario (data), en el que guarda todos los atributos del
-        objeto (obtenidos por medio de los anteriores métodos) de la siguiente
-        manera: clave = <nombre del atributo>, valor = <contenido del atributo>.
-        Posteriormente, crea un archivo JSON con el nombre específicado en el
-        que guarda data de manera que sea legible (indentación de 4 espacios).
+        It creates a dictionary (data) in which it stores all of the object's
+        attributes (obtained using the previous methods) as follows: key =
+        <attribute name>, value = <attribute content>. It then creates a JSON
+        file with the specified name in which it stores the data in a 
+        human-readable manner (indented by 4 spaces).
         """
         print(f"Remi is saving data to {filename}...")
         self.json_filename = filename
@@ -183,9 +183,9 @@ class Wikipedia(Cheese):
 
     def save_to_xlsx(self, xlsx_filename: str):
         """
-        Accede al contenido del archivo JSON creado y convierte tablas,
-        títulos, hipervínculos y párrafos  a un archivo XLSX donde se
-        separan en distintas hojas.
+        Access the contents of the created JSON file and convert tables,
+        headings, hyperlinks, and paragraphs to an XLSX file, where they are
+        separated into sheets.
         """
         print(f"Remi is saving data to {xlsx_filename}...")
 

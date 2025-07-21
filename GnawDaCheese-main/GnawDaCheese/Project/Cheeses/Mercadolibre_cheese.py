@@ -14,7 +14,7 @@ from openpyxl.styles import Font
 
 import os
 
-class Onlinecommerce:
+class Onlinecommerce(Cheese):
     def __init__(self, url: str):
         base_dir = os.path.dirname(os.path.abspath(__file__))  # ruta del archivo actual
         chromedriver_path = os.path.join(base_dir, "..", "chromedriver-linux64", "chromedriver")

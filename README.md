@@ -29,11 +29,6 @@ Some of its purposes are:
 4. Data collection for AI training
 5. Social networks analysis and trend monitoring
 
-### Python extensions 
--   Beautifulsoup (HTML and XML files) for statics webs
--   Selenium (browser interaction simulation) for dinamic webs
--   Scrapy (big projects) this allows to export data to differents formats (JSON, CSV, databases, etc)
-
 ### WARNINGS
 
 These are some recommendations to consider before practicing web scraping:

@@ -75,24 +75,9 @@ These are some recommendations to consider before practicing web scraping:
       -search_cheapest()
       -search_best_quality()
     }
-
-    class WebScraping{
-      +"Website"
-      +"Database"
-      +export_info()  
-    }
-
-    class document{
-      -list Information
-      +importpdf()
-    }
-
    
     Cheese-Website- <|-- OnlineStore: "is a"
     Cheese-Website- <|-- Wiki: "is a"
-    OnlineStore --o WebScraping: "has a"
-    Wiki --o WebScraping: "has a"
-    document --o WebScraping: "has a"
 ```
 ## Preleminary solution
 Our project will allow to collect, process and organize large amounts of data from multiple websites quickly and efficiently.

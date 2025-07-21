@@ -121,20 +121,20 @@ This script defines a Wikipedia class that inherits from Cheese. It is designed 
 
 ##### Main Components:
 Libraries used:
-json for saving structured data.
-pandas and openpyxl for exporting to Excel.
-requests and BeautifulSoup for web scraping.
+- json for saving structured data.
+- pandas and openpyxl for exporting to Excel.
+- requests and BeautifulSoup for web scraping.
 
 Class Wikipedia (inherits from Cheese):
-Constructor: Initializes the Wikipedia object with a URL, name, and creation date.
-status_code_verification: Ensures the webpage loads correctly (status 200).
+- Constructor: Initializes the Wikipedia object with a URL, name, and creation date.
+- status_code_verification: Ensures the webpage loads correctly (status 200).
 
 Scraping Methods:
-gnaw_titles(): Extracts all h2-tag titles from the page.
-gnaw_tables(): Extracts all tables with class "wikitable", and prints their rows and cells.
-gnaw_hyperlinks(): Extracts all hyperlinks from the page.
-gnaw_text(): Extracts all text from paragraph tags <p>.
+- gnaw_titles(): Extracts all h2-tag titles from the page.
+- gnaw_tables(): Extracts all tables with class "wikitable", and prints their rows and cells.
+- gnaw_hyperlinks(): Extracts all hyperlinks from the page.
+- gnaw_text(): Extracts all text from paragraph tags <p>.
 
 Saving Methods:
-save_to_json(filename): Gathers scraped data, stores it in a structured dictionary and saves it as a JSON file.
-save_to_xlsx(xlsx_filename): Reads the previously saved JSON file and converts the stored data (tables, titles, links, paragraphs) into separate Excel sheets.
+- save_to_json(filename): Gathers scraped data, stores it in a structured dictionary and saves it as a JSON file.
+- save_to_xlsx(xlsx_filename): Reads the previously saved JSON file and converts the stored data (tables, titles, links, paragraphs) into separate Excel sheets.

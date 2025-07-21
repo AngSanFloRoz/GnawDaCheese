@@ -198,87 +198,61 @@ class Wikipedia(Cheese):
         print(f"Remi is saving data to {xlsx_filename}...")
 
         base_dir = os.path.dirname(__file__)
-        
-        json_path = os.path.join(base_dir, "..", "jsonfilestatic", f"{self.json_name}.json")
-        
+        json_path = os.path.join(base_dir, "..", "jsonfilesstatic", f"{self.json_filename}.json")
+
         try:
             with open(json_path, 'r', encoding='utf-8') as file:
                 data = json.load(file)
 
-                tables = data.get("tables", [])
-                titles = data.get("titles", [])
-                hyperlinks = data.get("hyperlinks", [])
-                paragraphs = data.get("paragraphs", [])
+            wb = Workbook()
 
-                if not tables:
-                    print("No tables found in the JSON file to export.")
+            # Función para crear una hoja con formato
+            def add_sheet_with_format(sheet_name, headers, rows):
+                ws = wb.create_sheet(title=sheet_name)
+                ws.append(headers)
+                for cell in ws[1]:
+                    cell.font = Font(bold=True)
 
-                with pandas.ExcelWriter(
-                    xlsx_filename, engine = "openpyxl"
-                    ) as writer:
-                    
-                    try:
-                        for i, table in enumerate(tables):
-                            if len(table) > 1:
-                                df = pandas.DataFrame(
-                                    table[1:], columns = table[0]
-                                )
-                            else:
-                                df = pandas.DataFrame(table)
-                            df.to_excel(
-                                writer, sheet_name = f"Tabla_{i + 1}", index = False
-                                )
-            
-                    except Exception as e:
-                        print(
-                            f"An error occurred while saving tables to Excel: {e}"
-                        )
+                for row in rows:
+                    ws.append(row)
 
-                    try:
-                        if titles:
-                            df_titles = pandas.DataFrame(
-                                {"Títulos": titles}
-                            )
-                            df_titles.to_excel(
-                                writer, sheet_name = "Títulos", index = False
-                            )
+                # Alinear, ajustar ancho y congelar fila
+                for col in ws.columns:
+                    max_length = max((len(str(cell.value)) for cell in col if cell.value), default=0)
+                    col_letter = col[0].column_letter
+                    for cell in col:
+                        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+                    ws.column_dimensions[col_letter].width = max_length + 2
+                ws.freeze_panes = "A2"
 
-                    except Exception as e:
-                        print(
-                            f"An error occurred while saving titles to Excel: {e}"
-                             )
+            # Agregar tablas
+            for i, table in enumerate(data.get("tables", [])):
+                if table:
+                    headers = table[0] if len(table) > 1 else [f"Columna {j+1}" for j in range(len(table[0]))]
+                    rows = table[1:] if len(table) > 1 else table
+                    add_sheet_with_format(f"Tabla_{i+1}", headers, rows)
 
-                    try:
-                        if hyperlinks:
-                            df_links = pandas.DataFrame(
-                                {"Hipervínculos": hyperlinks}
-                            )
-                            df_links.to_excel(
-                                writer, sheet_name = "Links", index = False
-                            )
+            # Agregar títulos
+            if data.get("titles"):
+                add_sheet_with_format("Títulos", ["Título"], [[t] for t in data["titles"]])
 
-                    except Exception as e:
-                        print(
-                            f"An error occurred while saving hyperlinks to Excel: {e}"
-                        )
+            # Agregar hipervínculos
+            if data.get("hyperlinks"):
+                add_sheet_with_format("Links", ["Hipervínculo"], [[l] for l in data["hyperlinks"]])
 
-                    try:
-                        if paragraphs:
-                            df_paragraphs = pandas.DataFrame(
-                                {"Párrafos": paragraphs}
-                                                            )
-                            df_paragraphs.to_excel(
-                                writer, sheet_name = "Párrafos", index = False
-                            )
+            # Agregar párrafos
+            if data.get("paragraphs"):
+                add_sheet_with_format("Párrafos", ["Párrafo"], [[p] for p in data["paragraphs"]])
 
-                    except Exception as e:
-                        print(
-                            f"An error occurred while saving paragraphs to Excel: {e}"
-                             )
-                
-                print(
-                    f"Excel file saved successfully as '{xlsx_filename}'."
-                     )
+            # Eliminar la hoja por defecto vacía
+            if "Sheet" in wb.sheetnames:
+                wb.remove(wb["Sheet"])
+
+            excel_dir = os.path.join(base_dir, "..", "excelfilesstatic")
+            os.makedirs(excel_dir, exist_ok=True)
+            excel_path = os.path.join(excel_dir, f"{xlsx_filename}.xlsx")
+            wb.save(excel_path)
+            print(f"Archivo Excel guardado en: {excel_path}")
 
         except FileNotFoundError:
             print(f"JSON file '{self.json_filename}' not found.")
